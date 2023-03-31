@@ -26,7 +26,7 @@ const ChatLogScreen = ({ navigation }) => {
     messages.push(newUserMessage);
     
     console.log({ messages })
-
+setUserMessage("");
     
     try {
       const res = await fetch("https://code-hustel.onrender.com/api/v1", {
@@ -44,7 +44,7 @@ const ChatLogScreen = ({ navigation }) => {
       const newAssistantMessage = { "role": "assistant", "content": assistantMessage}
       messages.push(newAssistantMessage);
       console.log({ messages })
-      setUserMessage("");
+      
     } catch (error) {
       console.log({ error })
     } finally {
