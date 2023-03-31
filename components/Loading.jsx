@@ -1,9 +1,9 @@
 import { StyleSheet} from 'react-native'
 import React from 'react'
-import { Lottie } from 'lottie-react-native'
+import  Lottie  from 'lottie-react-native'
 const Loading = () => {
     return (
-        <Lottie source={"../assets/loading.json"} autoPlay loop style={styles.logo} />
+        <Lottie source={require("../assets/loading.json")} autoPlay loop style={styles.logo} />
     )
 }
 

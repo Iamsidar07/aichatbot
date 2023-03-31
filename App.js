@@ -19,14 +19,14 @@ export default function App() {
   };
 
   const [loaded] = useFonts({
-    "Prompt-Bold": require("./assets/fonts/Prompt-Bold.ttf"),
-    "Prompt-Medium": require("./assets/fonts/Prompt-Medium.ttf"),
-    "Prompt-Regular": require("./assets/fonts/Prompt-Regular.ttf"),
+    // "Prompt-Bold": require("./assets/fonts/Prompt-Bold.ttf"),
+    // "Prompt-Medium": require("./assets/fonts/Prompt-Medium.ttf"),
+    // "Prompt-Regular": require("./assets/fonts/Prompt-Regular.ttf"),
     "Poppins-Bold": require("./assets/fonts/Poppins-Bold.ttf"),
     "Poppins-Medium": require("./assets/fonts/Poppins-Medium.ttf"),
     "Poppins-Regular": require("./assets/fonts/Poppins-Regular.ttf"),
-    "SpaceGrotesk-Regular": require("./assets/fonts/SpaceGrotesk-Regular.ttf"),
-    "SpaceGrotesk-Medium": require("./assets/fonts/SpaceGrotesk-Medium.ttf"),
+    // "SpaceGrotesk-Regular": require("./assets/fonts/SpaceGrotesk-Regular.ttf"),
+    // "SpaceGrotesk-Medium": require("./assets/fonts/SpaceGrotesk-Medium.ttf"),
 
   });
 
@@ -38,7 +38,6 @@ export default function App() {
         <Stack.Navigator screenOptions={{ headerShown: false }} initialRouteName='HomeScreen'  >
           <Stack.Screen name="WelcomeScreen" component={WelcomeScreen} options={{ title: "Welcome" }} />
           <Stack.Screen name="ChatLogScreen" component={ChatLogScreen} options={{ title: "ChatLog" }} />
-
         </Stack.Navigator>
       </NavigationContainer>
     </View>
@@ -48,6 +47,6 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "white",
+    // backgroundColor: "purple",
   }
 });

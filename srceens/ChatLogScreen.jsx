@@ -1,64 +1,97 @@
-import { FlatList, SafeAreaView, StyleSheet, Text, TextInput, ToastAndroid, TouchableOpacity, View } from 'react-native'
+import { FlatList, Image, SafeAreaView, ScrollView, StyleSheet, Text, TextInput, ToastAndroid, TouchableOpacity, View } from 'react-native'
 import React, { useState } from 'react';
-import { UserChat, AssistantChat } from "../components"
+import { UserChat, AssistantChat, Loading } from "../components"
 import Constants from "expo-constants"
+import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
+import MyText from '../MyText';
 
-const ChatLogScreen = () => {
+let messages = [{
+  "role":"assistant",
+  "content":"How may I help you ?",
+}];
+
+const ChatLogScreen = ({ navigation }) => {
   const [userMessage, setUserMessage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  let messages = [];
+  // const [messages, setMessages] = useState([{ "role": "user", "content": "Hey" }]);
+
+
   const date = new Date();
-  const timeStamp = date;//I will do something with it letter
+  const timeStamp = date.getTime().toString();//I will do something with it letter
   const sendMessage = async () => {
+
     setIsLoading(true);
-    const newUserMessage = { "role": "user", "content": userMessage, "timestamp": timeStamp }
+
+    const newUserMessage = { "role": "user", "content": userMessage}
     messages.push(newUserMessage);
+    
+    console.log({ messages })
+
+    
     try {
-      const res = await fetch("https://code-hustel.onrender.com", {
+      const res = await fetch("https://code-hustel.onrender.com/api/v1", {
         method: "POST",
         headers: {
-          "Content-Type": "application/json",
+          "Content-Type": "application/json"
         },
         body: JSON.stringify({
-          messages
+          "messages": messages
         })
       })
       const data = await res.json();
+      // console.log({ data })
       const assistantMessage = data.completion.content;
-      const newAssistantMessage = { "role": "assistant", "content": assistantMessage, "timestamp": timeStamp }
+      const newAssistantMessage = { "role": "assistant", "content": assistantMessage}
       messages.push(newAssistantMessage);
-      console.log(data.completion.content);
+      console.log({ messages })
+      setUserMessage("");
     } catch (error) {
-      ToastAndroid.show(error, ToastAndroid.SHORT)
+      console.log({ error })
     } finally {
       setIsLoading(false);
-      setUserMessage("");
+
     }
+
   }
 
-  const renderItem = ({ item }) => {
+
+  const renderItem = ({ item,i }) => {
+    // console.log({item})
     if (item.role === "user") {
-      return <UserChat text={item.content} timestamp={timeStamp} isLoading={isLoading}/>
+      return <UserChat text={item.content} isLoading={isLoading} />
     }
-    return <AssistantChat text={item.content} timestamp={timeStamp} isLoading={isLoading}/>
+
+      return <AssistantChat text={item.content} isLoading={isLoading} />
+    
   }
   return (
-    <SafeAreaView>
+    <SafeAreaView style={{ backgroundColor: "#7438F8" }}>
       <View style={styles.container}>
         <View style={styles.header}>
-          <View><Text>9270</Text></View>
-          <View><Text>9270</Text></View>
+          <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backBtn}>
+            <Ionicons name="arrow-back-outline" size={28} color="white" />
+          </TouchableOpacity>
+          <View style={styles.logoAndNameContainer}>
+            <Image source={require("../assets/rocket.png")} style={styles.logo} resizeMode='contain' />
+            <MyText text={'Codey'} style={styles.subHeadingText} />
+          </View>
         </View>
-        <FlatList
-          data={messages}
-          renderItem={renderItem}
-          keyExtractor={({ item, i }) => i}
-          showsVerticalScrollIndicator={false}
-        />
+
+          {
+            messages?.length !== 0 && <FlatList
+              data={messages}
+              renderItem={renderItem}
+              showsVerticalScrollIndicator={false}
+              contentContainerStyle={styles.chatLogContainer}
+              scrollEnabled={true}
+            />
+          }
+
+
         <View style={styles.inputContainer}>
-          <TextInput placeholder='Type a message' />
+          <TextInput placeholder='Type a message ' value={userMessage} onChangeText={(value) => setUserMessage(value)} style={styles.input} />
           <TouchableOpacity onPress={sendMessage} style={styles.sendBtn}>
-            <Text>Icon</Text>
+            <MaterialCommunityIcons name="send" size={28} color="white" />
           </TouchableOpacity>
         </View>
       </View>
@@ -67,21 +100,49 @@ const ChatLogScreen = () => {
   )
 }
 
+
+
 export default ChatLogScreen
 
 const styles = StyleSheet.create({
   container: {
-    paddingTop: Constants.statusBarHeight + 10,
+    paddingTop: Constants.statusBarHeight,
     height: "100%",
-    paddingHorizontal: 10,
-    alignItems: "center",
-    justifyContent: "space-evenly",
+    justifyContent: "space-between",
   },
   header: {
     flexDirection: "row",
     alignItems: "center",
-    justifyContent: "space-between",
-    backgroundColor: "purple",
+    justifyContent: "center",
+    // backgroundColor: "#7438F8",
+    padding: 7,
+  },
+  chatLogContainer: {
+
+    backgroundColor: "#F6F6F6",
+    minHeight: "90%",
+    paddingBottom:"30%",
+    padding:10
+  },
+
+  backBtn: {
+    position: 'absolute',
+    left: 2,
+  },
+  logo: {
+    width: 30,
+    height: 30,
+    borderRadius: 100,
+    marginRight: 5,
+  }
+  ,
+  subHeadingText: {
+    fontSize: 20,
+    color: "white",
+    textAlign: "center"
+  },
+  logoAndNameContainer: {
+    flexDirection: "row"
   },
   inputContainer: {
     flexDirection: "row",
@@ -91,16 +152,22 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     backgroundColor: "white",
+    padding: 10,
+    justifyContent: "space-between"
   },
   input: {
     padding: 10,
+    width: "80%",
     backgroundColor: "white",
-    flex: 1,
-    fontFamily: "Prompt-Regular"
+    fontFamily: "Poppins-Regular"
   },
   sendBtn: {
-    backgroundColor: "purple",
+    backgroundColor: "#7438F8",
     borderRadius: 30,
-    margin: 5,
+    padding: 10,
+    alignItems: "center",
+    justifyContent: "center",
+    
+
   }
 })

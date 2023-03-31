@@ -3,22 +3,21 @@ import React from 'react'
 import MyText from '../MyText'
 import Loading from './Loading'
 
-const AssistantChat = ({ text, timestamp,isLoading }) => {
+const AssistantChat = ({ text, isLoading }) => {
     return (
         <>
-        {
-                isLoading ? (<View style={styles.container}>
-                    <Image
-                        source={require("../assets/icon.png")}
-                        style={styles.assistantImage}
-                        resizeMode='contain'
-                    />
+            {
+                !isLoading ? (<View style={styles.container}>
                     <View>
+                        <Image
+                            source={require("../assets/logo.jpg")}
+                            style={styles.assistantImage}
+                            resizeMode='contain'
+                        />
                         <MyText text={text} style={styles.text} />
-                        <MyText text={timestamp} style={styles.timestamp} />
                     </View>
-                </View>)  : <Loading/>
-        }
+                </View>) : <Loading />
+            }
         </>
     )
 }
@@ -28,22 +27,27 @@ export default AssistantChat
 const styles = StyleSheet.create({
     container: {
         flexDirection: "row",
+        marginTop: 30,
     },
     assistantImage: {
-        position: "absolute",
-        bottom: 10,
-        right: 5,
-        borderWidth: 2,
+        borderWidth: 5,
         borderColor: "white",
         borderRadius: 30,
+        width: 40,
+        height: 40,
+        zIndex: 20,
+        position:"absolute",
+        top:-20,
+        left:-8,
     },
     text: {
-        backgroundColor: "purple",
+        backgroundColor: "#7438F8",
         color: "white",
         padding: 10,
         borderRadius: 15,
+        marginTop:10
     },
-    timestamp: {
+    timeStamp: {
         fontSize: 12,
     },
 })
