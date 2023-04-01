@@ -3,11 +3,11 @@ import React from 'react'
 import MyText from '../MyText'
 import Loading from './Loading'
 
-const AssistantChat = ({ text, isLoading }) => {
+const AssistantChat = ({ text, isLoading}) => {
     return (
         <>
             {
-                !isLoading ? (<View style={styles.container}>
+                isLoading && (text==="loading") ? <Loading /> : (<View style={styles.container}>
                     <View>
                         <Image
                             source={require("../assets/logo.jpg")}
@@ -16,7 +16,7 @@ const AssistantChat = ({ text, isLoading }) => {
                         />
                         <MyText text={text} style={styles.text} />
                     </View>
-                </View>) : <Loading />
+                </View>)
             }
         </>
     )
@@ -36,16 +36,16 @@ const styles = StyleSheet.create({
         width: 40,
         height: 40,
         zIndex: 20,
-        position:"absolute",
-        top:-20,
-        left:-8,
+        position: "absolute",
+        top: -20,
+        left: -8,
     },
     text: {
         backgroundColor: "#7438F8",
         color: "white",
         padding: 10,
         borderRadius: 15,
-        marginTop:10
+        marginTop: 10
     },
     timeStamp: {
         fontSize: 12,

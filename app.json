@@ -1,15 +1,16 @@
 {
   "expo": {
-    "name": "ai-chat",
-    "slug": "ai-chat",
+    "name": "Codey AI Chat",
+    "slug": "codey-ai-chat",
     "version": "1.0.0",
+    "description":"Codey is chat bot for coders and all powered by openai",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#7438F8"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
@@ -22,8 +23,8 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#FFFFFF"
+        "foregroundImage": "./assets/icon.png",
+        "backgroundColor": "#7438F8"
       }
     },
     "web": {
