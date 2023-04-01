@@ -1,5 +1,5 @@
-import { FlatList, Image, SafeAreaView, StyleSheet, TextInput,TouchableOpacity, View } from 'react-native'
-import React, { useState } from 'react';
+import { Alert, FlatList, Image, SafeAreaView, StyleSheet, TextInput,TouchableOpacity, View } from 'react-native'
+import React, {  useState } from 'react';
 import { UserChat, AssistantChat} from "../components"
 import Constants from "expo-constants"
 import { Ionicons, MaterialCommunityIcons, Feather } from '@expo/vector-icons';
@@ -19,15 +19,13 @@ const ChatLogScreen = ({ navigation }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [isStopped,setIsStopped]=useState(false);
 
-  // const [messages, setMessages] = useState([{ "role": "user", "content": "Hey" }]);
-
-
   const date = new Date();
-  const timeStamp = date.getTime().toString();//I will do something with it letter
   const tempAssistantMessage = { "role": "assistant", "content": "loading" };
   const readText = async (text) => {
     Speech.speak(text);
-  }
+} 
+   
+
   const sendMessage = async () => {
 
     setIsLoading(true);
@@ -51,18 +49,15 @@ const ChatLogScreen = ({ navigation }) => {
         })
       })
       const data = await res.json();
-      // console.log({ data })
+
       const assistantMessage = data.completion.content;
       const newAssistantMessage = { "role": "assistant", "content": assistantMessage }
       messages.pop();//remove tempAssistantMessage
       messages.push(newAssistantMessage);
       readText(assistantMessage);
 
-      console.log({ messages })
-
     } catch (error) {
-      console.log({ error });
-      showToast(error);
+      Alert.alert(error);
     } finally {
       setIsLoading(false);
     }
@@ -70,12 +65,11 @@ const ChatLogScreen = ({ navigation }) => {
   }
 
 
-  const renderItem = ({ item, index }) => {
+  const renderItem = ({ item }) => {
 
     if (item.role === "user") {
       return <UserChat text={item.content} isLoading={isLoading} />
     }
-
     return <AssistantChat text={item.content} isLoading={isLoading} />
 
   }
@@ -101,8 +95,6 @@ const ChatLogScreen = ({ navigation }) => {
             scrollEnabled={true}
           />
         }
-
-
 
         <View style={styles.inputContainer}>
           <TextInput placeholder='Type a message ' value={userMessage} onChangeText={(value) => setUserMessage(value)} style={styles.input} />

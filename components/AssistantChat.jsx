@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
         marginTop: 30,
     },
     assistantImage: {
-        borderWidth: 5,
+        borderWidth: 2,
         borderColor: "white",
         borderRadius: 30,
         width: 40,
