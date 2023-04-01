@@ -31,6 +31,7 @@ const ChatLogScreen = ({ navigation }) => {
   const sendMessage = async () => {
 
     setIsLoading(true);
+    setIsStopped(false);
 
     const newUserMessage = { "role": "user", "content": userMessage }
     messages.push(newUserMessage);
@@ -86,7 +87,7 @@ const ChatLogScreen = ({ navigation }) => {
             <Ionicons name="arrow-back-outline" size={28} color="white" />
           </TouchableOpacity>
           <View style={styles.logoAndNameContainer}>
-            <Image source={require("../assets/rocket.png")} style={styles.logo} resizeMode='contain' />
+            <Image source={require("../assets/logo.jpg")} style={styles.logo} resizeMode='contain' />
             <MyText text={'Codey'} style={styles.subHeadingText} />
           </View>
         </View>
