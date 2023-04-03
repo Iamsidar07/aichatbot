@@ -1,9 +1,20 @@
-import { Image, StyleSheet, View } from 'react-native'
+import { Image, StyleSheet, ToastAndroid, View } from 'react-native'
 import React from 'react'
 import MyText from '../MyText'
 import Loading from './Loading'
+import * as Clipboard from "expo-clipboard";
+import { Feather } from '@expo/vector-icons';
 
 const AssistantChat = ({ text, isLoading}) => {
+
+    const copyToClipboard = async (text) => {
+        await Clipboard.setStringAsync(text);
+        showToast("copied.")
+
+    };
+    function showToast(message) {
+        ToastAndroid.show(message, ToastAndroid.SHORT);
+    }
     return (
         <>
             {
@@ -15,6 +26,7 @@ const AssistantChat = ({ text, isLoading}) => {
                             resizeMode='contain'
                         />
                         <MyText text={text} style={styles.text} />
+                        <Feather name="copy" size={14} color="white" style={styles.copyBtn} onPress={()=>copyToClipboard(text)}/>
                     </View>
                 </View>)
             }
@@ -43,11 +55,17 @@ const styles = StyleSheet.create({
     text: {
         backgroundColor: "#7438F8",
         color: "white",
-        padding: 10,
+        padding:15,
         borderRadius: 15,
         marginTop: 10
     },
     timeStamp: {
         fontSize: 12,
     },
+    copyBtn:{
+        position:'absolute',
+        bottom:4,
+        right:8,
+
+    }
 })

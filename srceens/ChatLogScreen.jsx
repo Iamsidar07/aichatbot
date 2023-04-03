@@ -5,12 +5,12 @@ import Constants from "expo-constants"
 import { Ionicons, MaterialCommunityIcons, Feather } from '@expo/vector-icons';
 import MyText from '../MyText';
 import * as Speech from 'expo-speech';
-import { showToast } from "../utils"
 
 let messages = [{
   "role": "assistant",
   "content": "How may I help you ?",
 }];
+
 
 
 
