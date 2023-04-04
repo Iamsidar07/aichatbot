@@ -75,7 +75,7 @@ const ChatLogScreen = ({ navigation }) => {
             </TouchableOpacity>
             <View style={styles.logoAndNameContainer}>
               <Image source={require("../assets/logo.jpg")} style={styles.logo} resizeMode='contain' />
-              <MyText text={'Kamla'} style={styles.subHeadingText} />
+              <MyText text={'Codey'} style={styles.subHeadingText} />
             </View>
           </View>
 
