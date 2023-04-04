@@ -33,10 +33,10 @@ const styles = StyleSheet.create({
     height: "100%",
     paddingHorizontal: 10,
     alignItems: "center",
-    justifyContent: "space-evenly",
+    justifyContent: "space-around",
   },
   headingText: {
-    fontSize: 30,
+    fontSize: 34,
     fontWeight: "bold",
     color: "white",
     textAlign: "center"
@@ -49,7 +49,6 @@ const styles = StyleSheet.create({
   },
   logo: {
     width: "100%",
-    height:200,
   },
   btnText: {
     fontSize: 24,
@@ -62,7 +61,5 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     marginTop: 15,
     borderRadius: 40,
-
-
   }
 })
