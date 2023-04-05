@@ -55,6 +55,7 @@ const ChatLogScreen = ({ navigation }) => {
       messages.push(newAssistantMessage);
       readText(assistantMessage);
     } catch (error) {
+      messages.push({"role":"assistant","content":"Oops,Something went wrong..."})
       Alert.alert(error);
     } finally {
       setIsLoading(false);
