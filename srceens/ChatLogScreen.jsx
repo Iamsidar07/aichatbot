@@ -33,7 +33,6 @@ const ChatLogScreen = ({ navigation }) => {
   }
   const sendMessage = async () => {
     setIsLoading(true);
-    setIsStopped(false);
     const newUserMessage = { "role": "user", "content": userMessage }
     messages.push(newUserMessage);
     messages.push(tempAssistantMessage); // I will remove once assistant message comes
