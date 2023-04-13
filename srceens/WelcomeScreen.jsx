@@ -7,7 +7,7 @@ import Lottie from "lottie-react-native"
 const WelcomeScreen = ({ navigation }) => {
   return (
     <SafeAreaView>
-      <Image source={require("../assets/homeBg.jfif")} resizeMode='cover' style={StyleSheet.absoluteFillObject} blurRadius={1} />
+      <Image source={require("../assets/HomeBg.jfif")} resizeMode='cover' style={StyleSheet.absoluteFillObject} blurRadius={1} />
       <View style={styles.container}>
         <View>
           <MyText text={"Hello 👋,"} style={styles.headingText} />
