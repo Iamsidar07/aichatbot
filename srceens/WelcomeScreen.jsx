@@ -9,7 +9,7 @@ const WelcomeScreen = ({ navigation }) => {
     <SafeAreaView>
       <View style={styles.container}>
         <View>
-          <MyText text={"Hello,"} style={styles.headingText} />
+          <MyText text={"Hello 👋,"} style={styles.headingText} />
           <MyText text={"I'm Codey"} style={styles.subHeadingText} />
         </View>
         <Lottie source={require("../assets/chat.json")} autoPlay style={styles.logo} />
