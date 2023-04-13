@@ -1,4 +1,4 @@
-import { SafeAreaView, StyleSheet, TouchableOpacity, View } from 'react-native'
+import { Image, SafeAreaView, StyleSheet, TouchableOpacity, View } from 'react-native'
 import React from 'react'
 import MyText from '../MyText'
 import Constants from "expo-constants"
@@ -7,6 +7,7 @@ import Lottie from "lottie-react-native"
 const WelcomeScreen = ({ navigation }) => {
   return (
     <SafeAreaView>
+      <Image source={require("../assets/homeBg.jfif")} resizeMode='cover' style={StyleSheet.absoluteFillObject} blurRadius={1} />
       <View style={styles.container}>
         <View>
           <MyText text={"Hello 👋,"} style={styles.headingText} />

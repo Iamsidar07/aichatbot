@@ -67,7 +67,7 @@ const ChatLogScreen = ({ navigation }) => {
     (<AssistantChat message={item.content} isLoading={isLoading} />)
 
   return (
-    <ImageBackground source={require("../assets/chatBg.png")} style={StyleSheet.absoluteFillObject} resizeMode='cover'>
+    <ImageBackground source={require("../assets/chatLogBg.jpg")} style={StyleSheet.absoluteFillObject} resizeMode='cover' blurRadius={1} >
       <SafeAreaView >
         <View style={styles.container}>
           <View style={[styles.header, boxShadow]}>
