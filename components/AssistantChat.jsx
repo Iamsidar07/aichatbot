@@ -4,7 +4,7 @@ import MyText from '../MyText'
 import Loading from './Loading'
 import * as Clipboard from "expo-clipboard";
 import { Feather } from '@expo/vector-icons';
-
+import { boxshadow } from "../contants"
 const AssistantChat = ({ message, isLoading }) => {
     const copyToClipboard = async (message) => {
         await Clipboard.setStringAsync(message);
@@ -18,7 +18,7 @@ const AssistantChat = ({ message, isLoading }) => {
         <View>
             {
                 isLoading && (message === "loading") ? <Loading /> : (<View>
-                    <View style={styles.container}>
+                    <View style={[styles.container,boxshadow]}>
                         <Image
                             source={require("../assets/logo.jpg")}
                             style={styles.assistantImage}
@@ -29,7 +29,7 @@ const AssistantChat = ({ message, isLoading }) => {
                         </View>
                         
                     </View>
-                    <TouchableOpacity style={styles.copyBtn} onPress={()=>copyToClipboard(message)}>
+                    <TouchableOpacity style={[styles.copyBtn,boxshadow]} onPress={()=>copyToClipboard(message)}>
                         <Feather name="copy" size={18} color="#7438F8" />
                         <MyText text={"Copy Text"} style={styles.copyBtnText} />
                     </TouchableOpacity>
@@ -55,14 +55,15 @@ const styles = StyleSheet.create({
         height: 40,
         zIndex: 20,
         position: "absolute",
-        top: -20,
-        left: -8,
+        top: -25,
+        left: -5,
     },
     message: {
         backgroundColor: "#7438F8",
         color: "white",
         padding: 15,
         borderRadius: 10,
+        borderBottomRightRadius:0,
         marginTop: 10
     },
     timeStamp: {
@@ -72,15 +73,16 @@ const styles = StyleSheet.create({
         backgroundColor:"white",
         paddingHorizontal:10,
         paddingVertical:5,
-        marginTop:0,
         borderRadius:5,
         marginTop:5,
         alignSelf:"flex-start",
         flexDirection:"row",
+        alignItems:"center",
     },
     copyBtnText:{
         color:"#7438F8",
         textAlign:"center",
         marginLeft:5,
+        padding:5
     }
 })

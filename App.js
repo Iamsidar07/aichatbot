@@ -19,15 +19,9 @@ export default function App() {
   };
 
   const [loaded] = useFonts({
-    // "Prompt-Bold": require("./assets/fonts/Prompt-Bold.ttf"),
-    // "Prompt-Medium": require("./assets/fonts/Prompt-Medium.ttf"),
-    // "Prompt-Regular": require("./assets/fonts/Prompt-Regular.ttf"),
-    "Poppins-Bold": require("./assets/fonts/Poppins-Bold.ttf"),
-    "Poppins-Medium": require("./assets/fonts/Poppins-Medium.ttf"),
-    "Poppins-Regular": require("./assets/fonts/Poppins-Regular.ttf"),
-    // "SpaceGrotesk-Regular": require("./assets/fonts/SpaceGrotesk-Regular.ttf"),
-    // "SpaceGrotesk-Medium": require("./assets/fonts/SpaceGrotesk-Medium.ttf"),
-
+    "Sen-Bold": require("./assets/fonts/Sen-Bold.ttf"),
+    "Sen-ExtraBold": require("./assets/fonts/Sen-ExtraBold.ttf"),
+    "Sen-Regular": require("./assets/fonts/Sen-Regular.ttf"),
   });
 
   if (!loaded) return null;

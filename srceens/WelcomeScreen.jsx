@@ -53,12 +53,12 @@ const styles = StyleSheet.create({
   btnText: {
     fontSize: 24,
     color: "#7438F8",
-    textAlign: "center"
+    textAlign: "center",
   },
   btn: {
     backgroundColor: "white",
     paddingHorizontal: 15,
-    paddingVertical: 10,
+    paddingVertical: 15,
     marginTop: 15,
     borderRadius: 40,
   }

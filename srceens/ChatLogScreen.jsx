@@ -5,11 +5,12 @@ import Constants from "expo-constants"
 import { Ionicons, MaterialCommunityIcons, Feather } from '@expo/vector-icons';
 import MyText from '../MyText';
 import * as Speech from 'expo-speech';
+import { boxShadow } from '../contants';
 
 let messages = [{
   "role": "assistant",
   "content": "How may I help you ?",
-}];
+},];
 
 const ChatLogScreen = ({ navigation }) => {
   const [userMessage, setUserMessage] = useState("");
@@ -54,7 +55,7 @@ const ChatLogScreen = ({ navigation }) => {
       messages.push(newAssistantMessage);
       readText(assistantMessage);
     } catch (error) {
-      messages.push({"role":"assistant","content":"Oops,Something went wrong..."})
+      messages.push({ "role": "assistant", "content": "Oops,Something went wrong..." })
       Alert.alert(error);
     } finally {
       setIsLoading(false);
@@ -69,7 +70,7 @@ const ChatLogScreen = ({ navigation }) => {
     <ImageBackground source={require("../assets/chatBg.png")} style={StyleSheet.absoluteFillObject} resizeMode='cover'>
       <SafeAreaView >
         <View style={styles.container}>
-          <View style={styles.header}>
+          <View style={[styles.header, boxShadow]}>
             <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backBtn}>
               <Ionicons name="arrow-back-outline" size={28} color="white" />
             </TouchableOpacity>
@@ -91,12 +92,12 @@ const ChatLogScreen = ({ navigation }) => {
           }
 
 
-          <View style={styles.inputContainer}>
-            <TextInput placeholder='Type a message ' value={userMessage} onChangeText={(value) => setUserMessage(value)} style={styles.input} />
+          <View style={[styles.inputContainer, boxShadow]}>
+            <TextInput placeholder='Type a message ' value={userMessage} onChangeText={(value) => setUserMessage(value)} style={styles.input} multiline />
             <TouchableOpacity onPress={handleMicPress} style={[styles.sendBtn, styles.micBtn]} >
               <Feather name={`${isStopped ? "mic-off" : "mic"}`} size={18} color="#7438F8" />
             </TouchableOpacity>
-            <TouchableOpacity onPress={sendMessage} style={styles.sendBtn}>
+            <TouchableOpacity onPress={sendMessage} style={[styles.sendBtn, boxShadow]}>
               <MaterialCommunityIcons name="send" size={28} color="white" />
             </TouchableOpacity>
           </View>
@@ -122,12 +123,12 @@ const styles = StyleSheet.create({
     padding: 7,
     paddingTop: Constants.statusBarHeight,
     backgroundColor: "#7438F8",
-    position:"relative"
+    position: "relative"
   },
   backBtn: {
-    position:"absolute",
-    left:3,
-    bottom:"30%",
+    position: "absolute",
+    left: 3,
+    bottom: "30%",
   },
   chatLogContainer: {
     minHeight: "90%",
@@ -164,7 +165,7 @@ const styles = StyleSheet.create({
     padding: 10,
     width: "70%",
     backgroundColor: "white",
-    fontFamily: "Poppins-Regular"
+    fontFamily: "Sen-Regular"
   },
   sendBtn: {
     backgroundColor: "#7438F8",

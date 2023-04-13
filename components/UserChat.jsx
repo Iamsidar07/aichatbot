@@ -1,14 +1,14 @@
 import { Image, StyleSheet, View } from 'react-native'
 import React from 'react'
 import MyText from '../MyText'
-
+import { boxShadow } from '../contants'
 const UserChat = ({ message }) => {
     return (
-        <View style={styles.container}>
-            <View style={styles.userLogoContainer}>
+        <View style={[styles.container,boxShadow]}>
+            <View style={[styles.userLogoContainer,boxShadow]}>
                 <Image
                     source={require("../assets/boy.jpg")}
-                    style={styles.userLogo}
+                    style={[styles.userLogo,boxShadow]}
                     resizeMode='cover'
                 />
             </View>
@@ -24,7 +24,7 @@ export default UserChat
 const styles = StyleSheet.create({
     container: {
         flexDirection: "row-reverse",
-        marginTop: 30,
+        marginTop: 10,
     },
     userLogoContainer: {
         borderWidth: 2,
@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
         height: 40,
         zIndex: 50,
         position: "absolute",
-        bottom: -30,
+        bottom: -35,
         left: 0,
     },
     userLogo: {
@@ -46,7 +46,8 @@ const styles = StyleSheet.create({
     },
     text: {
         backgroundColor: "white",
-        padding: 10,
+        padding: 15,
         borderRadius: 10,
+        borderTopLeftRadius:0,
     },
 })
