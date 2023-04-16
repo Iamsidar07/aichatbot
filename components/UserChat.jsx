@@ -48,6 +48,6 @@ const styles = StyleSheet.create({
         backgroundColor: "white",
         padding: 15,
         borderRadius: 10,
-        borderTopLeftRadius:0,
+        borderBottomRightRadius:0,
     },
 })

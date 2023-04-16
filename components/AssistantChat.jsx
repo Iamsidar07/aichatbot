@@ -63,7 +63,7 @@ const styles = StyleSheet.create({
         color: "white",
         padding: 15,
         borderRadius: 10,
-        borderBottomRightRadius:0,
+        borderBottomLeftRadius:0,
         marginTop: 10
     },
     timeStamp: {
