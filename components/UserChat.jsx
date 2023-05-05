@@ -19,5 +19,6 @@ const styles = StyleSheet.create({
         marginTop: 20,
         paddingVertical: 25,
         paddingHorizontal: 25,
+        alignSelf:"flex-end"
     },
 })

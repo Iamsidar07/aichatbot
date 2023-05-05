@@ -14,15 +14,16 @@ export default Loading
 const styles = StyleSheet.create({
     container:{
         backgroundColor: "#272c39",
-        borderRadius: 15,
+        borderRadius: 25,
         borderTopLeftRadius: 5,
         marginTop: 30,
         width: 100,
+        paddingHorizontal: 25,
         alignItems:"center",
         justifyContent:"center",
     },
     logo: {
         width: 100,
-        height: 50,
+        height:70,
     }
 })
