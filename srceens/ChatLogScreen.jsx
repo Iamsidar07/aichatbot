@@ -1,15 +1,15 @@
-import { Alert, FlatList, Image, ImageBackground, SafeAreaView, StyleSheet, TextInput, TouchableOpacity, View } from 'react-native'
+import { Alert, FlatList, Image,  SafeAreaView, StyleSheet, TextInput, TouchableOpacity, View } from 'react-native'
 import React, { useEffect, useState } from 'react';
 import { UserChat, AssistantChat } from "../components"
 import Constants from "expo-constants"
-import { Ionicons, MaterialCommunityIcons, Feather } from '@expo/vector-icons';
+import { AntDesign,  Feather } from '@expo/vector-icons';
 import MyText from '../MyText';
 import * as Speech from 'expo-speech';
 import { boxShadow } from '../contants';
 
 let messages = [{
   "role": "assistant",
-  "content": "How may I help you ?",
+  "content": "Hello 👋, I am codey. How may I help you.",
 },];
 
 const ChatLogScreen = ({ navigation }) => {
@@ -19,7 +19,7 @@ const ChatLogScreen = ({ navigation }) => {
   const tempAssistantMessage = { "role": "assistant", "content": "loading" };
   //greet user Once after opening app;
   useEffect(() => {
-    Speech.speak("Hello, How may I help you.")
+    Speech.speak("Hello , I am codey. How may I help you.")
     return () => {
       Speech.stop();
     }
@@ -67,43 +67,48 @@ const ChatLogScreen = ({ navigation }) => {
     (<AssistantChat message={item.content} isLoading={isLoading} />)
 
   return (
-    <ImageBackground source={require("../assets/chatBgLight.png")} style={StyleSheet.absoluteFillObject} resizeMode='cover'>
-      <SafeAreaView >
-        <View style={styles.container}>
-          <View style={[styles.header, boxShadow]}>
-            <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backBtn}>
-              <Ionicons name="arrow-back-outline" size={28} color="white" />
-            </TouchableOpacity>
-            <View style={styles.logoAndNameContainer}>
-              <Image source={require("../assets/logo.jpg")} style={styles.logo} resizeMode='contain' />
-              <MyText text={'Codey'} style={styles.subHeadingText} />
+
+    <SafeAreaView >
+      <View style={styles.container}>
+        <View style={[styles.header]}>
+          <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backBtn}>
+            <AntDesign name="left" size={16} color="white" />
+          </TouchableOpacity>
+          <View style={styles.botNameStatusContainer}>
+            <MyText text={'Codey bot'} style={styles.subHeadingText} />
+            <View style={styles.onlineStatusContainer}>
+              <View style={styles.onlineStatusIcon}></View>
+              <MyText text={'Online'} style={styles.onlineStatus} />
             </View>
           </View>
-
-
-          {
-            messages?.length !== 0 && <FlatList
-              data={messages}
-              renderItem={renderChat}
-              showsVerticalScrollIndicator={false}
-              contentContainerStyle={styles.chatLogContainer}
-              scrollEnabled={true}
-            />
-          }
-
-
-          <View style={[styles.inputContainer, boxShadow]}>
-            <TextInput placeholder='Type a message ' value={userMessage} onChangeText={(value) => setUserMessage(value)} style={styles.input} multiline />
-            <TouchableOpacity onPress={handleMicPress} style={[styles.sendBtn, styles.micBtn]} >
-              <Feather name={`${isStopped ? "mic-off" : "mic"}`} size={18} color="#7438F8" />
-            </TouchableOpacity>
-            <TouchableOpacity onPress={sendMessage} style={[styles.sendBtn, boxShadow]}>
-              <MaterialCommunityIcons name="send" size={28} color="white" />
-            </TouchableOpacity>
-          </View>
+          <Image source={require("../assets/logo.jpg")} style={styles.logo} resizeMode='contain' />
         </View>
-      </SafeAreaView>
-    </ImageBackground>
+        <View style={styles.seperator} />
+
+
+        {
+          messages?.length !== 0 && <FlatList
+            data={messages}
+            renderItem={renderChat}
+            showsVerticalScrollIndicator={false}
+            contentContainerStyle={styles.chatLogContainer}
+            scrollEnabled={true}
+          />
+        }
+
+
+        <View style={[styles.inputContainer, boxShadow]}>
+          <TextInput placeholder='Ask anything' value={userMessage} onChangeText={(value) => setUserMessage(value)} style={styles.input}  placeholderTextColor={"#636d83"} />
+          <TouchableOpacity onPress={handleMicPress} style={[styles.sendBtn, styles.micBtn]} >
+            <Feather name={`${isStopped ? "mic-off" : "mic"}`} size={18} color="#636d83" />
+          </TouchableOpacity>
+          <TouchableOpacity onPress={sendMessage} style={[styles.sendBtn, boxShadow]}>
+            <AntDesign name="right" size={16} color="white" />
+          </TouchableOpacity>
+        </View>
+      </View>
+    </SafeAreaView >
+
   )
 }
 
@@ -115,29 +120,59 @@ const styles = StyleSheet.create({
   container: {
     height: "100%",
     justifyContent: "space-between",
+    backgroundColor: "#1c202a"
   },
   header: {
     flexDirection: "row",
     alignItems: "center",
-    justifyContent: "center",
+    justifyContent: "space-between",
     padding: 7,
-    paddingTop: Constants.statusBarHeight,
-    backgroundColor: "#7438F8",
-    position: "relative"
+    paddingTop: Constants.statusBarHeight + 15,
+    paddingBottom: 10,
   },
   backBtn: {
-    position: "absolute",
-    left: 3,
-    bottom: "30%",
+    backgroundColor: "#272c39",
+    width: 50,
+    height: 50,
+    borderRadius: 60,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  botNameStatusContainer:{
+   alignItems:"center",
+  },
+  onlineStatusContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    marginTop:5,
+  },
+  onlineStatus: {
+    fontSize: 14,
+    marginLeft: 3,
+    color:"white",
+    opacity:0.5
+  },
+  onlineStatusIcon: {
+    width: 10,
+    height: 10,
+    borderRadius: 40,
+    backgroundColor: "green",
+  },
+  seperator: {
+    height: 1,
+    width: "100%",
+    backgroundColor: "#272c39"
+
   },
   chatLogContainer: {
     minHeight: "90%",
     paddingBottom: "30%",
-    padding: 10
+    padding: 10,
+    marginTop: 25,
   },
   logo: {
-    width: 30,
-    height: 30,
+    width: 45,
+    height: 45,
     borderRadius: 100,
     marginRight: 5,
   }
@@ -157,20 +192,22 @@ const styles = StyleSheet.create({
     bottom: 0,
     left: 0,
     right: 0,
-    backgroundColor: "white",
+    backgroundColor: "#272c39",
     padding: 10,
     justifyContent: "space-between"
   },
   input: {
     padding: 10,
     width: "70%",
-    backgroundColor: "white",
-    fontFamily: "Sen-Regular"
+    fontFamily: "Sen-Regular",
+    color: "white",
+    fontSize:18
   },
   sendBtn: {
-    backgroundColor: "#7438F8",
-    borderRadius: 30,
-    padding: 10,
+    backgroundColor: "#564ec3",
+    width:50,
+    height:50,
+    borderRadius:30,
     alignItems: "center",
     justifyContent: "center",
   },

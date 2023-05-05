@@ -6,11 +6,11 @@
     "description":"Codey is chat bot for coders and all powered by openai",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
-    "userInterfaceStyle": "light",
+    "userInterfaceStyle": "dark",
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#7438F8"
+      "backgroundColor": "#1c202a"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
@@ -24,7 +24,7 @@
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/icon.png",
-        "backgroundColor": "#7438F8"
+        "backgroundColor": "#1c202a"
       }
     },
     "web": {

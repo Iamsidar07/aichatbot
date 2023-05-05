@@ -4,7 +4,6 @@ import MyText from '../MyText'
 import Loading from './Loading'
 import * as Clipboard from "expo-clipboard";
 import { Feather } from '@expo/vector-icons';
-import { boxshadow } from "../contants"
 const AssistantChat = ({ message, isLoading }) => {
     const copyToClipboard = async (message) => {
         await Clipboard.setStringAsync(message);
@@ -18,7 +17,7 @@ const AssistantChat = ({ message, isLoading }) => {
         <View>
             {
                 isLoading && (message === "loading") ? <Loading /> : (<View>
-                    <View style={[styles.container,boxshadow]}>
+                    <View style={[styles.container]}>
                         <Image
                             source={require("../assets/logo.jpg")}
                             style={styles.assistantImage}
@@ -29,9 +28,8 @@ const AssistantChat = ({ message, isLoading }) => {
                         </View>
                         
                     </View>
-                    <TouchableOpacity style={[styles.copyBtn,boxshadow]} onPress={()=>copyToClipboard(message)}>
-                        <Feather name="copy" size={18} color="#7438F8" />
-                        <MyText text={"Copy Text"} style={styles.copyBtnText} />
+                    <TouchableOpacity style={[styles.copyBtn]} onPress={()=>copyToClipboard(message)}>
+                        <Feather name="copy" size={18} color="white" />
                     </TouchableOpacity>
                 </View>)
             }
@@ -49,40 +47,36 @@ const styles = StyleSheet.create({
     },
     assistantImage: {
         borderWidth: 2,
-        borderColor: "white",
+        borderColor: "#1d51d3",
         borderRadius: 30,
         width: 40,
         height: 40,
         zIndex: 20,
         position: "absolute",
-        top: -25,
-        left: -5,
+        top: -35,
+        left: 0,
     },
     message: {
-        backgroundColor: "#7438F8",
+        backgroundColor: "#7269E3",
         color: "white",
-        padding: 15,
-        borderRadius: 10,
-        borderBottomLeftRadius:0,
-        marginTop: 10
+        borderRadius: 25,
+        borderTopLeftRadius:5,
+        marginTop: 10,
+        paddingVertical:25,
+        paddingHorizontal:20,
     },
     timeStamp: {
         fontSize: 12,
     },
     copyBtn: {
-        backgroundColor:"white",
-        paddingHorizontal:10,
-        paddingVertical:5,
-        borderRadius:5,
+        backgroundColor:"#272c39",
+        paddingHorizontal:15,
+        paddingVertical:10,
+        borderRadius:10,
         marginTop:5,
         alignSelf:"flex-start",
         flexDirection:"row",
         alignItems:"center",
     },
-    copyBtnText:{
-        color:"#7438F8",
-        textAlign:"center",
-        marginLeft:5,
-        padding:5
-    }
+
 })
