@@ -6,7 +6,7 @@ import { AntDesign,  Feather } from '@expo/vector-icons';
 import MyText from '../MyText';
 import * as Speech from 'expo-speech';
 import { boxShadow } from '../contants';
-
+import { Voice } from 'expo-speech';
 let messages = [{
   "role": "assistant",
   "content": "Hello 👋, I am codey. How may I help you.",

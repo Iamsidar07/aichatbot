@@ -18,3 +18,28 @@ export const boxShadow = {
 
   elevation: 2,
 }
+
+export const reactions=[
+  {
+    id:1,
+    icon:"💖"
+  },
+  {
+    id:2,
+    icon:"👍"
+  },
+  {
+    id:3,
+    icon:"👎"
+  },
+  {
+    id:4,
+    icon:"🔥"
+  },
+  {
+    id:5,
+    icon:"👏"
+  },
+
+  
+]
