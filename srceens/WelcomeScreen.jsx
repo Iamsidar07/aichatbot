@@ -1,8 +1,7 @@
-import { Image, SafeAreaView, StyleSheet, TouchableOpacity, View } from 'react-native'
-import React from 'react'
-import MyText from '../MyText'
-import Constants from "expo-constants"
-import Lottie from "lottie-react-native"
+import { Image, SafeAreaView, StyleSheet, TouchableOpacity, View } from 'react-native';
+import React from 'react';
+import MyText from '../MyText';
+import Constants from "expo-constants";
 
 const WelcomeScreen = ({ navigation }) => {
   return (
@@ -10,7 +9,7 @@ const WelcomeScreen = ({ navigation }) => {
       <View style={styles.container}>
         <View style={styles.imageContainer}>
           <Image source={require("../assets/bot.png")} style={styles.logo} resizeMode='contain' />
-          <MyText text={"Hey Codey👋"} style={styles.botName} />
+          <MyText text={"Hey Codey🚀"} style={styles.botName} />
         </View>
         <View>
           <MyText text={"How Can I help you ?"} style={styles.subHeadingText} />

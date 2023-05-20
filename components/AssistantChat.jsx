@@ -1,21 +1,20 @@
-import { Image, StyleSheet, ToastAndroid, TouchableOpacity, View } from 'react-native'
+import { Image, StyleSheet, TouchableOpacity, View } from 'react-native'
 import React, { useState } from 'react'
 import MyText from '../MyText'
 import Loading from './Loading'
 import * as Clipboard from "expo-clipboard";
 import { Feather } from '@expo/vector-icons';
 import { reactions } from '../contants';
+import { showToast } from '../utils';
 
 const AssistantChat = ({ message, isLoading }) => {
     const [reactionIcon, setReactionIcon] = useState(null);
     const [showReactionCard, setShowReactionCard] = useState(false);
     const copyToClipboard = async (message) => {
         await Clipboard.setStringAsync(message);
-        showToast("copied.")
+        showToast("✅ text copied.");
     };
-    const showToast = (message) => {
-        ToastAndroid.show(message, ToastAndroid.SHORT);
-    }
+
     const handleReactionIconPress = (icon) => {
         setReactionIcon(icon);
         setShowReactionCard(false);
@@ -36,9 +35,6 @@ const AssistantChat = ({ message, isLoading }) => {
             </TouchableOpacity>
         </View>
     }
-
-    console.log(reactionIcon)
-
 
     return (
         <View>
@@ -115,11 +111,11 @@ const styles = StyleSheet.create({
     },
     reactionIcon: {
         position: "relative",
-        left: 15,
+        left: 7,
         bottom: 15,
         backgroundColor: "#272c39",
         borderRadius: 25,
-        padding: 10,
+        padding: 3,
         alignSelf:"flex-start",
         fontSize:20,
         zIndex:2,

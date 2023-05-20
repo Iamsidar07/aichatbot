@@ -1,12 +1,13 @@
 import { Alert, FlatList, Image,  SafeAreaView, StyleSheet, TextInput, TouchableOpacity, View } from 'react-native'
 import React, { useEffect, useState } from 'react';
-import { UserChat, AssistantChat } from "../components"
+import { UserChat, AssistantChat, Separator } from "../components"
 import Constants from "expo-constants"
 import { AntDesign,  Feather } from '@expo/vector-icons';
 import MyText from '../MyText';
 import * as Speech from 'expo-speech';
 import { boxShadow } from '../contants';
-import { Voice } from 'expo-speech';
+import { showToast } from '../utils';
+
 let messages = [{
   "role": "assistant",
   "content": "Hello 👋, I am codey. How may I help you.",
@@ -19,7 +20,7 @@ const ChatLogScreen = ({ navigation }) => {
   const tempAssistantMessage = { "role": "assistant", "content": "loading" };
   //greet user Once after opening app;
   useEffect(() => {
-    Speech.speak("Hello , I am codey. How may I help you.")
+    Speech.speak("Hello⚡, I am Pilla. How may I help you.")
     return () => {
       Speech.stop();
     }
@@ -33,6 +34,10 @@ const ChatLogScreen = ({ navigation }) => {
     Speech.stop();
   }
   const sendMessage = async () => {
+    if (userMessage.length===0) {
+      showToast("🚀 Can't send empty message.")
+      return;
+    }
     setIsLoading(true);
     const newUserMessage = { "role": "user", "content": userMessage }
     messages.push(newUserMessage);
@@ -75,28 +80,25 @@ const ChatLogScreen = ({ navigation }) => {
             <AntDesign name="left" size={16} color="white" />
           </TouchableOpacity>
           <View style={styles.botNameStatusContainer}>
-            <MyText text={'Codey bot'} style={styles.subHeadingText} />
+            <MyText text={'Pilla💛🔰'} style={styles.subHeadingText} />
             <View style={styles.onlineStatusContainer}>
               <View style={styles.onlineStatusIcon}></View>
-              <MyText text={'Online'} style={styles.onlineStatus} />
             </View>
+              <MyText text={'Online'} style={styles.onlineStatus} />
           </View>
           <Image source={require("../assets/logo.jpg")} style={styles.logo} resizeMode='contain' />
         </View>
-        <View style={styles.seperator} />
-
-
+        <Separator/>
         {
-          messages?.length !== 0 && <FlatList
+          messages?.length !== 0 ? <FlatList
             data={messages}
             renderItem={renderChat}
             showsVerticalScrollIndicator={false}
             contentContainerStyle={styles.chatLogContainer}
             scrollEnabled={true}
-          />
+          />: null
         }
-
-
+        <Separator/>
         <View style={[styles.inputContainer, boxShadow]}>
           <TextInput placeholder='Ask anything' value={userMessage} onChangeText={(value) => setUserMessage(value)} style={styles.input}  placeholderTextColor={"#636d83"} />
           <TouchableOpacity onPress={handleMicPress} style={[styles.sendBtn, styles.micBtn]} >
@@ -158,12 +160,6 @@ const styles = StyleSheet.create({
     borderRadius: 40,
     backgroundColor: "green",
   },
-  seperator: {
-    height: 1,
-    width: "100%",
-    backgroundColor: "#272c39"
-
-  },
   chatLogContainer: {
     minHeight: "90%",
     paddingBottom: "30%",
@@ -193,7 +189,7 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     backgroundColor: "#272c39",
-    padding: 10,
+    padding: 7,
     justifyContent: "space-between"
   },
   input: {

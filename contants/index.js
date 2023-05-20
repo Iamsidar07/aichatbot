@@ -22,7 +22,7 @@ export const boxShadow = {
 export const reactions=[
   {
     id:1,
-    icon:"💖"
+    icon:"💚"
   },
   {
     id:2,
@@ -38,7 +38,7 @@ export const reactions=[
   },
   {
     id:5,
-    icon:"👏"
+    icon:"🚀"
   },
 
   
